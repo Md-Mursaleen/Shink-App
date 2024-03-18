@@ -1,0 +1,45 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type ShinkUser @model {
+  bio: String
+  birthDate: String
+  datePreference: String
+  datePreferenceAgeMax: Int
+  datePreferenceAgeMin: Int
+  datePreferenceGender: String
+  datePreferenceOrientation: String
+  dislikes: [AWSJSON]
+  gender: String
+  givenGreenFlags: [AWSJSON]
+  givenRedFlags: [AWSJSON]
+  images: [AWSJSON]
+  interests: [AWSJSON]
+  isAgreementCompleted: Boolean
+  isVerified: Boolean
+  leftSwipes: [String]
+  likes: [AWSJSON]
+  location: AWSJSON
+  matches: [String]
+  name: String
+  phoneNumber: String
+  receivedGreenFlags: [AWSJSON]
+  receivedRedFlags: [AWSJSON]
+  relationshipStatus: String
+  reports: [AWSJSON]
+  rightSwipes: [String]
+  sexuality: String
+  socketInfo: AWSJSON
+  spotifyMusicInterests: AWSJSON
+  subscriptionInfo: AWSJSON
+  userId: String! @primaryKey
+}
+
+type UserMessages @model {
+  createdAt: Int
+  from: String
+  id: String! @primaryKey
+  message: [AWSJSON]
+  to: String
+}

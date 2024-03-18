@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-shinkappmain-dev-173721-authRole",
+      "UnauthRoleArn": "arn:aws:iam::709488052794:role/amplify-shinkappmain-dev-173721-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::709488052794:role/amplify-shinkappmain-dev-173721-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-shinkappmain-dev-173721-deployment",
+      "UnauthRoleName": "amplify-shinkappmain-dev-173721-unauthRole",
+      "StackName": "amplify-shinkappmain-dev-173721",
+      "StackId": "arn:aws:cloudformation:ap-south-1:709488052794:stack/amplify-shinkappmain-dev-173721/4182c9b0-d30d-11ee-9ddc-027eab58d3a7",
+      "AmplifyAppId": "d1wvcmx9ba5zbs"
+    },
+    "categories": {
+      "auth": {
+        "shinkappmaind5695208": {}
+      },
+      "api": {
+        "shinkapiv1": {}
+      }
+    }
+  }
+}
