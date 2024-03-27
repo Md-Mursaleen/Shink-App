@@ -47,12 +47,58 @@ const HomeScreen = () => {
     setIsModalOpened(true);
   };
 
-  const handleLeftSwipe = () => {
+  // const handleLeftSwipe = () => {
+  //   swiperRef.current.swipeLeft();
+  //   setIndex(index + 1);
+  // };
+
+  // const handleRightSwipe = () => {
+  //   swiperRef.current.swipeRight();
+  //   setIndex(index + 1);
+  // };
+
+  const handleUserDislike = async () => {
     swiperRef.current.swipeLeft();
     setIndex(index + 1);
+    try {
+      // Storing user ID in AsyncStorage
+      const userId = users[index].userData.userId;
+      await AsyncStorage.getItem('dislikedUsers', (error, result) => {
+        let dislikedUsers = [];
+        if (result !== null) {
+          dislikedUsers = JSON.parse(result);
+        }
+        dislikedUsers.push(userId);
+        AsyncStorage.setItem('dislikedUsers', JSON.stringify(dislikedUsers));
+      });
+      const response = await fetch(
+        'https://iidz3dzpcf.execute-api.ap-south-1.amazonaws.com/default/handleSwipeLeft',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            loggedInUserId: 'Akshit',
+            swipedUserId: userId,
+          }),
+        }
+      );
+
+      // Check if the request was successful (status code in the range 200-299)
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        // If there was an error, log the status code and any error message
+        console.log('Request failed with status: ', response.status);
+        const errorMessage = await response.text();
+        console.log(errorMessage);
+      }
+    } catch (error) {
+      // If there was an exception while fetching the data, log it
+      console.log('Error while fetching data: ', error);
+    }
   };
 
-  const handleRightSwipe = () => {
+  const handleUserLike = () => {
     swiperRef.current.swipeRight();
     setIndex(index + 1);
   };
@@ -62,18 +108,47 @@ const HomeScreen = () => {
     return match ? match[0] : null;
   }
 
+  // const fetchData = async () => {
+  //   try {
+  //     setDataFetchError(false);
+  //     setLoading(true);
+  //     // Replace 'your-url' with the actual URL you want to fetch from
+  //     const response = await fetch(
+  //       'https://wphfsmzto7.execute-api.ap-south-1.amazonaws.com/default/pythonDB',
+  //     );
+  //     const data = await response.json();
+  //     setUsers(data);
+  //   } catch (error) {
+  //     console.error('Error in fetching data: ', error);
+  //     setLoading(false);
+  //     setDataFetchError(true);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const fetchData = async () => {
     try {
       setDataFetchError(false);
       setLoading(true);
-      // Replace 'your-url' with the actual URL you want to fetch from
+
+      // Fetch dislikedUsers from AsyncStorage
+      const dislikedUsersString = await AsyncStorage.getItem('dislikedUsers');
+      const dislikedUsers = dislikedUsersString ? JSON.parse(dislikedUsersString) : [];
+
+      // Fetch data from API
       const response = await fetch(
         'https://wphfsmzto7.execute-api.ap-south-1.amazonaws.com/default/pythonDB',
       );
       const data = await response.json();
-      setUsers(data);
+
+      // Filter out data to exclude dislikedUsers
+      const filteredData = data.filter(item => !dislikedUsers.includes(item.userData.userId));
+
+      // Set the filtered data
+      setUsers(filteredData);
     } catch (error) {
-      console.error('Error in fetching data: ', error);
+      console.log('Error while fetching data: ', error);
       setLoading(false);
       setDataFetchError(true);
     } finally {
@@ -395,7 +470,7 @@ const HomeScreen = () => {
         stackSeparation={14} />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => handleLeftSwipe()}
+          onPress={() => handleUserDislike()}
           style={styles.buttonImageStyle}>
           <SvgXml xml={closeSvg} />
         </TouchableOpacity>
@@ -417,7 +492,7 @@ const HomeScreen = () => {
               style={styles.flagImageStyle} />
           </View>
         </Pressable>
-        <TouchableOpacity onPress={() => handleRightSwipe()}
+        <TouchableOpacity onPress={() => handleUserLike()}
           style={styles.buttonImageStyle}>
           <SvgXml xml={heartSvg} width="70%" height="70%" />
         </TouchableOpacity>
@@ -797,7 +872,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   userAgeTextStyle: {
-    marginTop:normalize(3),
+    marginTop: normalize(3),
     fontSize: 18,
     fontWeight: '600',
     fontFamily: 'AvenirNext-Regular',
@@ -912,7 +987,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     width: '100%',
-    height: normalize(495),
+    height: normalize(515),
     backgroundColor: 'rgba(0,0,0,0.05)',
     overflow: 'hidden',
     borderRadius: 10,
@@ -939,7 +1014,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   cardStyle: {
-    marginTop: normalize(-20),
+    marginTop: normalize(-35),
     height: normalize(600),
     borderRadius: 10,
     overflow: 'hidden',

@@ -25,7 +25,7 @@ const FAQScreen = () => {
         <View style={styles.container}>
             <LinearGradient start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
-                colors={['#c680b2', '#9e5594', '#7b337e']}
+                colors={['#4e40b3', '#4e40b3', '#4e40b3']}
                 style={styles.navigationBarStyle}>
                 <TouchableOpacity onPress={() => handlePreviousButtonPressed()}
                     style={styles.rowContainer}>
@@ -47,83 +47,98 @@ const FAQScreen = () => {
                             <Text style={styles.headingTextStyle}>
                                 How Do Dating Apps Work?</Text>
                             <Text style={styles.subHeadingTextStyle}>Profile Creation</Text>
-                            <Text style={styles.contentTextStyle}>Users create a profile with personal information, photos, and a brief bio.
+                            <Text style={styles.contentTextStyle}>
+                                Users create a profile with personal information, photos, and a brief bio.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Matching</Text>
-                            <Text style={styles.contentTextStyle}>Algorithms analyze user data to suggest potential matches based on compatibility.
+                            <Text style={styles.contentTextStyle}>
+                                Algorithms analyze user data to suggest potential matches based on compatibility.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Swiping or Liking</Text>
-                            <Text style={styles.contentTextStyle}>Users swipe right (like) or left (pass) on profiles to express interest.
+                            <Text style={styles.contentTextStyle}>
+                                Users swipe right (like) or left (pass) on profiles to express interest.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Messaging</Text>
-                            <Text style={styles.contentTextStyle}>If both users like each other, they can start chatting within the app.
+                            <Text style={styles.contentTextStyle}>
+                                If both users like each other, they can start chatting within the app.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Profile Creation</Text>
-                            <Text style={styles.contentTextStyle}>Users create a profile with personal information, photos, and a brief bio.
+                            <Text style={styles.contentTextStyle}>
+                                Users create a profile with personal information, photos, and a brief bio.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.headingTextStyle}>
                                 Dating Safe?</Text>
                             <Text style={styles.subHeadingTextStyle}>Profile Creation</Text>
-                            <Text style={styles.contentTextStyle}>Users create a profile with personal information, photos, and a brief bio.
+                            <Text style={styles.contentTextStyle}>
+                                Users create a profile with personal information, photos, and a brief bio.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Verify Profiles</Text>
-                            <Text style={styles.contentTextStyle}>Look for verified profiles or linked social media accounts.
+                            <Text style={styles.contentTextStyle}>
+                                Look for verified profiles or linked social media accounts.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Meet in Public</Text>
-                            <Text style={styles.contentTextStyle}>When meeting someone in person, choose a public location.
+                            <Text style={styles.contentTextStyle}
+                            >When meeting someone in person, choose a public location.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Trust Your Instincts</Text>
-                            <Text style={styles.contentTextStyle}>If something feels off, trust your gut and take precautions.
+                            <Text style={styles.contentTextStyle}>
+                                If something feels off, trust your gut and take precautions.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.headingTextStyle}>
                                 How Can I Improve My Profile?</Text>
                             <Text style={styles.subHeadingTextStyle}>Photos</Text>
-                            <Text style={styles.contentTextStyle}>Use clear, recent photos that showcase your personality.
+                            <Text style={styles.contentTextStyle}>
+                                Use clear, recent photos that showcase your personality.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Bio</Text>
-                            <Text style={styles.contentTextStyle}>Write a concise, engaging bio that highlights your interests and what you’re looking for.
+                            <Text style={styles.contentTextStyle}
+                            >Write a concise, engaging bio that highlights your interests and what you’re looking for.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Be Authentic</Text>
-                            <Text style={styles.contentTextStyle}>Be yourself—authenticity attracts genuine connections.
+                            <Text style={styles.contentTextStyle}>
+                                Be yourself—authenticity attracts genuine connections.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.headingTextStyle}>
                                 What Should I Avoid?</Text>
                             <Text style={styles.subHeadingTextStyle}>Overediting Photos</Text>
-                            <Text style={styles.contentTextStyle}>Be genuine; avoid heavy filters or misleading images.
+                            <Text style={styles.contentTextStyle}>
+                                Be genuine; avoid heavy filters or misleading images.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Ghosting</Text>
-                            <Text style={styles.contentTextStyle}>If you’re not interested, communicate politely rather than disappearing.
+                            <Text style={styles.contentTextStyle}>
+                                If you’re not interested, communicate politely rather than disappearing.
                             </Text>
                         </View>
                         <View>
                             <Text style={styles.subHeadingTextStyle}>Ignoring Red Flags</Text>
-                            <Text style={styles.contentTextStyle}>Trust your instincts; don’t ignore warning signs.
+                            <Text style={styles.contentTextStyle}>
+                                Trust your instincts; don’t ignore warning signs.
                             </Text>
                         </View>
                     </View>
@@ -148,10 +163,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     navigationBarStyle: {
-        paddingVertical: normalize(10),
-        paddingHorizontal: normalize(15),
+        paddingVertical: normalize(8),
+        paddingHorizontal: normalize(16),
         width: '100%',
-        height: normalize(50),
+        height: normalize(56),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -167,7 +182,7 @@ const styles = StyleSheet.create({
     },
     titleTextStyle: {
         marginLeft: normalize(13),
-        fontSize: 23.5,
+        fontSize: 23,
         fontWeight: '500',
         fontFamily: 'AvenirNext-Regular',
         color: '#ffffff',
@@ -239,9 +254,8 @@ const styles = StyleSheet.create({
     bottomSubTextStyle: {
         marginLeft: normalize(10),
         fontSize: 17,
-        fontWeight: '600',
-        fontFamily: 'AvenirNext-Regular',
-        color: '#000000',
+        fontWeight: '700',
+        color: '#4e40b3',
         textAlign: 'center',
         lineHeight: 21,
     },

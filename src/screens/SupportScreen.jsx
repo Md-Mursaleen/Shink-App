@@ -18,7 +18,7 @@ const SupportScreen = () => {
         <View style={styles.container}>
             <LinearGradient start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
-                colors={['#c680b2', '#9e5594', '#7b337e']}
+                colors={['#4e40b3', '#4e40b3', '#4e40b3']}
                 style={styles.navigationBarStyle}>
                 <TouchableOpacity onPress={() => handlePreviousButtonPressed()}
                     style={styles.rowContainer}>
@@ -29,7 +29,7 @@ const SupportScreen = () => {
             </LinearGradient>
             <View style={styles.contentContainer}>
                 <Text style={styles.bottomTextStyle}>
-                    Would you like to get help by email.
+                    Please mail us at
                 </Text>
                 <View style={styles.bottomSubContainer}>
                     <SvgXml xml={emailSvgIcon} />
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     navigationBarStyle: {
-        paddingVertical: normalize(10),
-        paddingHorizontal: normalize(15),
+        paddingVertical: normalize(8),
+        paddingHorizontal: normalize(16),
         width: '100%',
-        height: normalize(50),
+        height: normalize(56),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     },
     titleTextStyle: {
         marginLeft: normalize(13),
-        fontSize: 23.5,
+        fontSize: 23,
         fontWeight: '500',
         fontFamily: 'AvenirNext-Regular',
         color: '#ffffff',
@@ -93,9 +93,8 @@ const styles = StyleSheet.create({
     bottomSubTextStyle: {
         marginLeft: normalize(10),
         fontSize: 16.5,
-        fontWeight: '600',
-        fontFamily: 'AvenirNext-Regular',
-        color: '#000000',
+        fontWeight: '700',
+        color: '#4e40b3',
         textAlign: 'center',
         lineHeight: 21,
     },

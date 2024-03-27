@@ -10,7 +10,12 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { normalize } from '../components/theme';
 import { SvgXml } from 'react-native-svg';
-import { smallRightIconSvg, shinkLogoSvg } from '../data/SvgImageData';
+import {
+    smallRightIconSvg, editSvg, notificationsIconSvg,
+    securityIconSvg, purchaseHistoryIconSvg, supportIconSvg,
+    termsAndConditionsIconSvg, faqIconSvg, hamburgerSvg,
+    mailIconSvg, profileIconSvg, phoneIconSvg,
+} from '../data/SvgImageData';
 import { Modalize } from 'react-native-modalize';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -58,7 +63,7 @@ const ProfileSettingsScreen = () => {
     };
 
     const handlePurchaseHistoryPress = () => {
-        navigation.navigate('PurchasesHistory');
+        navigation.navigate('PurchaseHistory');
     };
 
     const handleFAQPress = () => {
@@ -98,47 +103,74 @@ const ProfileSettingsScreen = () => {
         setShowPopup(false);
     };
 
-    const RenderSettingsItem = ({ onPress, title }) => {
+    // const RenderSettingsItem = ({ onPress, title }) => {
+    //     return (
+    //         <TouchableOpacity onPress={() => onPress()}
+    //             style={[styles.buttonContainer, title === 'Mobile Number' && {
+    //                 padding: normalize(14.5),
+    //                 backgroundColor: '#f2f2f2',
+    //             }]}>
+    //             <View style={styles.buttonContentContainer}>
+    //                 <Text style={[styles.buttonTextStyle, title === 'Your Profile Deactivated' &&
+    //                     confirmedButtonPressed === true && { color: '#eb4335' }]}>{title}</Text>
+    //                 {title === 'Mobile Number' ? (
+    //                     <Text style={styles.phoneNumberTextStyle}>7982928791</Text>
+    //                 ) : (
+    //                     title === 'Notifications' || title === 'Hide Your Full Name' ? (
+    //                         <Switch value={title === 'Notifications' ?
+    //                             isNotificationsEnabled : isHideNameEnabled}
+    //                             trackColor={{ false: '#000000', true: '#9e5594' }}
+    //                             thumbColor={'#ffffff'}
+    //                             onValueChange={(value) => title === 'Notifications' ?
+    //                                 setIsNotificationsEnabled(value) : setIsHideNameEnabled(value)}
+    //                             style={{ marginRight: '-6%' }} />
+    //                     ) : (
+    //                         title === 'Logout' ? (
+    //                             <></>
+    //                         ) : (
+    //                             title === 'Your Profile Deactivated' ? (
+    //                                 confirmedButtonPressed === true ? (
+    //                                     <Text style={styles.turnOnTextStyle}>Turn on</Text>
+    //                                 ) : (
+    //                                     < SvgXml xml={smallRightIconSvg}
+    //                                         style={styles.rightArrowImageStyle} />
+    //                                 )
+    //                             ) : (
+    //                                 <SvgXml xml={smallRightIconSvg}
+    //                                     style={styles.rightArrowImageStyle} />
+    //                             )
+    //                         )
+    //                     )
+    //                 )}
+    //             </View>
+    //         </TouchableOpacity>
+    //     );
+    // };
+
+    const RenderSettingsItem = ({ onPress, title, slugName }) => {
         return (
-            <TouchableOpacity onPress={() => onPress()}
-                style={[styles.buttonContainer, title === 'Mobile Number' && {
-                    padding: normalize(14.5),
-                    backgroundColor: '#f2f2f2',
-                }]}>
-                <View style={styles.buttonContentContainer}>
-                    <Text style={[styles.buttonTextStyle, title === 'Your Profile Deactivated' &&
-                        confirmedButtonPressed === true && { color: '#eb4335' }]}>{title}</Text>
-                    {title === 'Mobile Number' ? (
-                        <Text style={styles.phoneNumberTextStyle}>7982928791</Text>
-                    ) : (
-                        title === 'Notifications' || title === 'Hide Your Full Name' ? (
-                            <Switch value={title === 'Notifications' ?
-                                isNotificationsEnabled : isHideNameEnabled}
-                                trackColor={{ false: '#000000', true: '#9e5594' }}
-                                thumbColor={'#ffffff'}
-                                onValueChange={(value) => title === 'Notifications' ?
-                                    setIsNotificationsEnabled(value) : setIsHideNameEnabled(value)}
-                                style={{ marginRight: '-6%' }} />
-                        ) : (
-                            title === 'Logout' ? (
-                                <></>
-                            ) : (
-                                title === 'Your Profile Deactivated' ? (
-                                    confirmedButtonPressed === true ? (
-                                        <Text style={styles.turnOnTextStyle}>Turn on</Text>
-                                    ) : (
-                                        < SvgXml xml={smallRightIconSvg}
-                                            style={styles.rightArrowImageStyle} />
-                                    )
-                                ) : (
-                                    <SvgXml xml={smallRightIconSvg}
-                                        style={styles.rightArrowImageStyle} />
-                                )
-                            )
-                        )
-                    )}
-                </View>
-            </TouchableOpacity>
+            <Pressable onPress={() => onPress()}
+                style={styles.itemContainer}>
+                <SvgXml xml={slugName}
+                    style={styles.iconStyle} />
+                <Text style={styles.itemTextStyle}>
+                    {title}</Text>
+            </Pressable>
+        );
+    };
+
+    const RenderSettingsPersonalInformationItem = ({ onPress, slugName,
+        title, value }) => {
+        return (
+            <Pressable onPress={() => onPress()}
+                style={styles.itemContainer}>
+                <SvgXml xml={slugName}
+                    style={styles.iconStyle} />
+                <Text style={styles.itemTextStyle}>{title}</Text>
+                <Text style={[styles.textStyle,
+                title === 'Name' &&
+                { marginLeft: normalize(120) }]}>{value}</Text>
+            </Pressable>
         );
     };
 
@@ -147,7 +179,7 @@ const ProfileSettingsScreen = () => {
             <View style={styles.container}>
                 <LinearGradient start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
-                    colors={['#c680b2', '#9e5594', '#7b337e']}
+                    colors={['#4e40b3', '#4e40b3', '#4e40b3']}
                     style={styles.navigationBarStyle}>
                     <TouchableOpacity onPress={() => handlePreviousButtonPressed()}
                         style={styles.rowContainer}>
@@ -155,55 +187,90 @@ const ProfileSettingsScreen = () => {
                             style={styles.backImageStyle} />
                         <Text style={styles.titleTextStyle}>Settings</Text>
                     </TouchableOpacity>
+                    <SvgXml xml={hamburgerSvg}
+                        style={styles.iconStyle} />
                 </LinearGradient>
-                <ScrollView style={{ flex: 1 }}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.headingTextStyle}>
+                        Personal Information</Text>
+                    <Pressable
+                        onPress={() => navigation.navigate('SettingsEditProfile')}
+                        style={styles.headerSubContainer}>
+                        <SvgXml xml={editSvg}
+                            style={styles.iconStyle} />
+                        <Text style={styles.headingSubTextStyle}>Edit</Text>
+                    </Pressable>
+                </View>
+                <RenderSettingsPersonalInformationItem
+                    onPress={() => navigation.navigate('SettingsName')}
+                    title={'Name'}
+                    slugName={profileIconSvg}
+                    value={'Md Mursaleen'} />
+                <RenderSettingsPersonalInformationItem
+                    onPress={() => navigation.navigate('SettingsPhoneNumber')}
+                    title={'Mobile Number'}
+                    slugName={profileIconSvg}
+                    value={'+917982928791'} />
+                <RenderSettingsPersonalInformationItem
+                    onPress={() => navigation.navigate('SettingsEmail')}
+                    title={'Email Address'}
+                    slugName={profileIconSvg}
+                    value={'mursaleen@shink.app'} />
+                <View style={styles.borderStyle} />
+                <Text style={styles.headingTextStyle}>Account</Text>
+                <RenderSettingsItem
+                    onPress={() => navigation.navigate('PurchaseHistory')}
+                    title={'Purchase History'}
+                    slugName={purchaseHistoryIconSvg} />
+                <RenderSettingsItem
+                    onPress={() => { }}
+                    title={'Security'}
+                    slugName={securityIconSvg} />
+                <View style={styles.borderStyle} />
+                <Text style={styles.headingTextStyle}>App</Text>
+                <RenderSettingsItem
+                    onPress={() => { }}
+                    title={'Notifications'}
+                    slugName={notificationsIconSvg} />
+                <RenderSettingsItem
+                    onPress={() => navigation.navigate('Support')}
+                    title={'Support'}
+                    slugName={supportIconSvg} />
+                <RenderSettingsItem
+                    onPress={() => navigation.navigate('FAQ')}
+                    title={'FAQ'}
+                    slugName={faqIconSvg} />
+                <RenderSettingsItem
+                    onPress={() => navigation.navigate('TermsAndConditions')}
+                    title={'Terms and Conditions'}
+                    slugName={termsAndConditionsIconSvg} />
+                <Text style={styles.deleteAccountTextStyle}>Delete Account</Text>
+                <Text style={styles.logoutTextStyle}>Logout</Text>
+                {/* <ScrollView style={{ flex: 1 }}>
                     <View style={styles.bodyContainer}>
-                        {/* // Name Button */}
                         <RenderSettingsItem onPress={() => handleNamePress()}
                             title="Name" />
-
-                        {/* // Mobile Number Button */}
                         <RenderSettingsItem
                             title="Mobile Number" />
-
-                        {/* Add Email Button */}
                         <RenderSettingsItem onPress={() => handleAddEmailPress()}
                             title="Add Email" />
-
-                        {/* // Notifications Button */}
                         <RenderSettingsItem onPress={() => handleNotificationsPress()}
                             title="Notifications" />
-
-                        {/* // Hide Your Full Name Button */}
                         <RenderSettingsItem onPress={() => handleHideYourFullNamePress()}
                             title="Hide Your Full Name" />
-
-                        {/* // Purchase History Button */}
                         <RenderSettingsItem onPress={() => handlePurchaseHistoryPress()}
                             title="Purchase History" />
-
-                        {/* // FAQ Button */}
                         <RenderSettingsItem onPress={() => handleFAQPress()}
                             title="FAQ" />
-
-                        {/* // Support Button */}
                         <RenderSettingsItem onPress={() => handleSupportPress()}
                             title="Support" />
-
-                        {/* // Terms and Conditions Button */}
                         <RenderSettingsItem onPress={() => handleTermsandConditionsPress()}
                             title="Terms and Conditions" />
-
-                        {/* // Deactivate Button */}
                         <RenderSettingsItem onPress={() => handleDeactivatePress()}
                             title={confirmedButtonPressed === true ?
                                 'Your Profile Deactivated' : 'Deactivate'} />
-
-                        {/* // Delete Account Button */}
                         <RenderSettingsItem onPress={() => handleDeleteAccountPress()}
                             title="Delete Account" />
-
-                        {/* // Logout Button */}
                         <RenderSettingsItem onPress={() => handleLogoutPress()}
                             title="Logout" />
                     </View>
@@ -212,7 +279,7 @@ const ProfileSettingsScreen = () => {
                             style={styles.logoImageStyle} />
                         <Text style={styles.footerTextStyle}>Version: 1.237.7</Text>
                     </View>
-                </ScrollView>
+                </ScrollView> */}
             </View>
             <Modalize ref={emailModalizeRef}
                 snapPoint={220}
@@ -285,10 +352,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     navigationBarStyle: {
-        paddingVertical: normalize(10),
-        paddingHorizontal: normalize(15),
+        paddingVertical: normalize(8),
+        paddingHorizontal: normalize(16),
         width: '100%',
-        height: normalize(55),
+        height: normalize(56),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -304,7 +371,7 @@ const styles = StyleSheet.create({
     },
     titleTextStyle: {
         marginLeft: normalize(13),
-        fontSize: 23.5,
+        fontSize: 23,
         fontWeight: '500',
         fontFamily: 'AvenirNext-Regular',
         color: '#ffffff',
@@ -339,7 +406,6 @@ const styles = StyleSheet.create({
     buttonTextStyle: {
         fontSize: 16.5,
         fontWeight: '500',
-        // fontFamily: 'AvenirNext-Bold',
         color: '#282c3f',
         lineHeight: 21,
     },
@@ -430,7 +496,6 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         padding: 10,
-        // marginTop: 'auto',
         borderWidth: 1,
         borderColor: '#f4f4f4',
     },
@@ -523,6 +588,79 @@ const styles = StyleSheet.create({
         color: '#9d4edd',
         textAlign: 'center',
         lineHeight: 16,
+    },
+    headerContainer: {
+        marginTop: normalize(10),
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    headingTextStyle: {
+        marginVertical: normalize(13),
+        marginLeft: normalize(15),
+        fontSize: 18.5,
+        fontWeight: '800',
+        color: '#606060',
+        lineHeight: 27,
+    },
+    headerSubContainer: {
+        marginRight: normalize(15),
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    headingSubTextStyle: {
+        marginLeft: normalize(3),
+        fontSize: 15,
+        fontWeight: '400',
+        color: '#000000',
+        lineHeight: 18,
+    },
+    itemContainer: {
+        marginBottom: normalize(15),
+        marginLeft: normalize(20),
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    itemTextStyle: {
+        marginLeft: normalize(12),
+        fontSize: 14.7,
+        fontWeight: '400',
+        color: '#000000',
+        lineHeight: 21,
+    },
+    textStyle: {
+        marginLeft: normalize(60),
+        fontSize: 13.5,
+        fontWeight: '400',
+        color: '#000000',
+        lineHeight: 18,
+    },
+    borderStyle: {
+        marginHorizontal: normalize(18),
+        marginTop: normalize(15),
+        marginBottom: normalize(10),
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: '#929292',
+    },
+    iconStyle: {
+        width: normalize(14),
+        height: normalize(14),
+    },
+    deleteAccountTextStyle: {
+        marginLeft: normalize(20),
+        marginTop: normalize(20),
+        fontSize: 18.5,
+        fontWeight: '500',
+        color: '#e56b6b',
+        lineHeight: 18,
+    },
+    logoutTextStyle: {
+        marginLeft: normalize(20),
+        marginTop: normalize(25),
+        fontSize: 18.5,
+        fontWeight: '800',
+        color: '#4e40b3',
+        lineHeight: 18,
     },
 });
 

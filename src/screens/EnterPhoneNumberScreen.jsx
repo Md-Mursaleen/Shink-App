@@ -101,7 +101,8 @@ const EnterPhoneNumberScreen = () => {
             <ProgressBar progress={0.05} />
             <Loader loading={isLoading} color={'#9d4edd'} />
             <Text style={styles.titleTextStyle}>Number?</Text>
-            <View style={[styles.phoneNumberInputContainer, { borderColor: borderColor }]}>
+            <View style={[styles.phoneNumberInputContainer,
+            { borderColor: borderColor }]}>
                 <CountryPicker
                     {...{
                         countryCode,
@@ -117,7 +118,8 @@ const EnterPhoneNumberScreen = () => {
                     keyboardType="numeric"
                     value={phoneNumber}
                     onChangeText={text => setPhoneNumber(text)}
-                    style={[styles.phoneNumberTextInputStyle, { borderColor: borderColor }]} />
+                    style={[styles.phoneNumberTextInputStyle,
+                    { borderColor: borderColor }]} />
             </View>
             {borderColor === '#eb4335' ?
                 <Text style={styles.warningTextStyle}>Enter a valid phone number</Text>

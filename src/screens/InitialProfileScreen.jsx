@@ -550,6 +550,7 @@ const InitialProfileScreen = () => {
                         {/* <Image source={require('../assets/images/profile-setting-image.jpg')}
                     style={styles.settingImageStyle} /> */}
                         <SvgXml xml={settingIconSvg}
+                            onPress={() => navigation.navigate('ProfileSettings')}
                             style={styles.settingImageStyle} />
                     </View>
                     {/* containers */}

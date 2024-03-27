@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     container: {
         paddingHorizontal: normalize(22),
         // paddingTop: 45,
-        paddingTop: normalize(30), //newly added
+        paddingTop: normalize(25), //newly added
     },
     titleTextStyle: {
         fontSize: 32,
@@ -216,11 +216,11 @@ const styles = StyleSheet.create({
         lineHeight: 42,
     },
     contentContainer: {
-        marginTop: normalize(20),
+        marginTop: normalize(15),
         // marginTop: 10,
         width: "auto",
         // height: 525,
-        height: normalize(535), //newly added
+        height: normalize(550), //newly added
         alignContent: 'flex-start',
         borderWidth: 1.3,
         borderColor: '#cfd3d6',

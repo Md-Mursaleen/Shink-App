@@ -513,7 +513,8 @@ const ProfileScreen = () => {
                         initialBio={editedBio} />
                     {/* Buttons Container */}
                     <View style={styles.buttonsContainer}>
-                        <TouchableOpacity style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={() => navigation.navigate('InitialProfileVerification')}
+                            style={styles.buttonContainer}>
                             <Text style={styles.buttonTextStyle}>Verify my profile</Text>
                             <Image source={require('../assets/images/right-arrow.png')}
                                 style={styles.arrowIconStyle} />

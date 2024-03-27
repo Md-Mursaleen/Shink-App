@@ -67,7 +67,14 @@ import SupportScreen from '../screens/SupportScreen';
 import SettingsNameScreen from '../screens/SettingsNameScreen';
 import TermsAndConditionsScreen from '../screens/TermsAndConditionsScreen';
 import FAQScreen from '../screens/FAQScreen';
-import PurchasesHistoryScreen from '../screens/PurchasesHistoryScreen';
+import PurchaseHistoryScreen from '../screens/PurchaseHistoryScreen';
+import UserChatScreen from '../screens/UserChatScreen';
+import InitialProfileVerificationScreen from '../screens/InitialProfileVerificationScreen';
+import ProfileVerificationScreen from '../screens/ProfileVerificationScreen';
+import FinalProfileVerificationScreen from '../screens/FinalProfileVerificationScreen';
+import SettingsEmailScreen from '../screens/SettingsEmailScreen';
+import SettingsPhoneNumberScreen from '../screens/SettingsPhoneNumberScreen';
+import SettingsEditProfileScreen from '../screens/SettingsEditProfileScreen';
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -112,7 +119,8 @@ const BottomTabNavigation = () => {
 const RootNavigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="ProfileSettings">
+            <Stack.Navigator screenOptions={{ headerShown: false }}
+                initialRouteName="Login">
                 <Stack.Screen name="Agreement" component={AgreementScreen} />
                 <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
                 <Stack.Screen name="FlagTypeSelection" component={FlagTypeSelectionScreen} />
@@ -170,7 +178,14 @@ const RootNavigation = () => {
                 <Stack.Screen name="Support" component={SupportScreen} />
                 <Stack.Screen name="TermsAndConditions" component={TermsAndConditionsScreen} />
                 <Stack.Screen name="FAQ" component={FAQScreen} />
-                <Stack.Screen name="PurchasesHistory" component={PurchasesHistoryScreen} />
+                <Stack.Screen name="PurchaseHistory" component={PurchaseHistoryScreen} />
+                <Stack.Screen name="UserChat" component={UserChatScreen} />
+                <Stack.Screen name="InitialProfileVerification" component={InitialProfileVerificationScreen} />
+                <Stack.Screen name="ProfileVerification" component={ProfileVerificationScreen} />
+                <Stack.Screen name="FinalProfileVerification" component={FinalProfileVerificationScreen} />
+                <Stack.Screen name="SettingsEmail" component={SettingsEmailScreen} />
+                <Stack.Screen name="SettingsPhoneNumber" component={SettingsPhoneNumberScreen} />
+                <Stack.Screen name="SettingsEditProfile" component={SettingsEditProfileScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
